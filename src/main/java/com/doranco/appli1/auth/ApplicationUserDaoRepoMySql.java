@@ -1,11 +1,11 @@
-package com.doranco.appli1.projetjava.appli1.auth;
+package com.doranco.appli1.auth;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Repository;
-import org.test.tp01.user.Authority;
-import org.test.tp01.user.AuthorityRepository;
-import org.test.tp01.user.User;
-import org.test.tp01.user.UserRepository;
+import com.doranco.appli1.auth2.Authority;
+import com.doranco.appli1.auth2.AuthorityRepository;
+import com.doranco.appli1.user.User;
+import com.doranco.appli1.user.UserRepository;
 
 import java.util.List;
 import java.util.Set;
@@ -32,19 +32,10 @@ public class ApplicationUserDaoRepoMySql implements ApplicationUserDao{
                 .map(authority -> new SimpleGrantedAuthority(authority.getName()))
                 .collect(Collectors.toSet());
 
-        /*Set<SimpleGrantedAuthority> grantedAuthorities = new HashSet<>();
-        for(Authority authority : authorities){
-            grantedAuthorities.add(new SimpleGrantedAuthority(authority.getName()));
-        }*/
-
         return new ApplicationUserDetail(
                 user.getPassword(),
                 user.getUsername(),
-                grantedAuthorities,
-                user.isAccountNonExpired(),
-                user.isAccountNonLocked(),
-                user.isCredentialsNonExpired(),
-                user.isEnabled()
+                grantedAuthorities
         );
     }
 }

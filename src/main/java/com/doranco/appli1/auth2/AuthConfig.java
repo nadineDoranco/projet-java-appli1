@@ -1,5 +1,9 @@
-package com.doranco.appli1.user;
+package com.doranco.appli1.auth2;
 
+import com.doranco.appli1.user.User;
+import com.doranco.appli1.user.UserRepository;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -23,7 +27,7 @@ public class AuthConfig {
 
 
 
-    /*@Bean
+    @Bean
     CommandLineRunner initUserAdmin() {
         return args -> {
             User user_admin = userRepository.save(new User("admin",passwordEncoder.encode("123")));
@@ -50,5 +54,5 @@ public class AuthConfig {
         };
 
 
-    }*/
+    }
 }

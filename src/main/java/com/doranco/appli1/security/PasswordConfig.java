@@ -1,4 +1,4 @@
-package com.doranco.appli1.security2;
+package com.doranco.appli1.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,5 +1,6 @@
-package com.doranco.appli1.user;
+package com.doranco.appli1.auth2;
 
+import com.doranco.appli1.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,7 +23,7 @@ public class Authority {
             joinColumns = @JoinColumn(name = "id_auth"),
             inverseJoinColumns = @JoinColumn(name = "id_user")
     )
-    @JsonIgnore
+    //@JsonIgnore
     private List<User> users;
 
     public Authority(String name) {

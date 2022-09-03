@@ -1,4 +1,4 @@
-package com.doranco.appli1.projetjava.appli1.auth;
+package com.doranco.appli1.auth;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

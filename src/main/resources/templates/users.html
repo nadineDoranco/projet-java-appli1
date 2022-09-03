@@ -9,63 +9,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Habitations | Liste</title>
+    <title>Users</title>
 </head>
 <body>
     <div layout:fragment="page_content">
         <div class="container mt-5">
             <div class="card">
                 <div class="card-header">
-                    A louer
+                    Liste des utilisateurs
                 </div>
                 <div class="card-body">
                     <table class="table">
                         <tr>
-                            <th>Id</th>
-                            <th>Nom</th>
-                            <th>Département</th>
-                            <th>m²</th>
-                            <th>Prix</th>
+                            <th>Username</th>
+                            <th>Prénom</th>
+                            <th>E-mail</th>
+                            <th>Téléphone</th>
+                            <th>Role</th>
                             <th>Actions</th>
                         </tr>
-                        <tr th:each="h:${habitations}">
-                            <td th:text="${h.id}"> </td>
-                            <td th:text="${h.nom}"> </td>
-                            <td th:text="${h.departement}"> </td>
-                            <td th:text="${h.superficie}"> </td>
-                            <td th:text="${h.prix}"></td>
+                        <tr th:each="u:${users}">
+                            <td th:text="${u.username}"> </td>
+                            <td th:text="${u.prenom}"> </td>
+                            <td th:text="${u.email}"> </td>
+                            <td th:text="${u.phone}"> </td>
+                            <td th:text="${u.role}"></td>
                             <td>            
                                 <button>
-                                    <a th:href="@{habitations/update/{id}(id=${h.id})}">Modifier</a>
+                                    <a th:href="@{users/update/{username}(username=${u.username})}">Modifier</a>
                                 </button>         
                                 <button>
-                                    <a th:href="@{habitations/delete/{id}(id=${h.id})}">Supprimer</a>
+                                    <a th:href="@{users/delete/{username}(username=${u.username})}">Supprimer</a>
                                 </button> 
                             </td>
                         </tr>
                     </table>
                     
-                    <h3>Ajouter une habitation :</h3>                    
-                    <form th:action="@{habitations/save}" method="post">
+                    <h3>Ajouter un utilisateur :</h3>
+                    <form th:action="@{users/save}" method="post">
                         <div class="form-group">
-                            <label for="id">Id :</label>
-                            <input type="text" name="id" th:value="${habitation.id}" id="id" placeholder="Id">
+                            <label for="username">Username :</label>
+                            <input type="text" name="username" th:value="${user.username}" id="username" placeholder="username">
                         </div>
                         <div class="form-group">
-                            <label for="nom">Nom :</label>
-                            <input type="text" name="nom" id="nom" th:value="${habitation.nom}" placeholder="Nom">
+                            <label for="nom">Prénom:</label>
+                            <input type="text" name="prenom" id="nom" th:value="${user.prenom}" placeholder="Nom">
                         </div>
                         <div class="form-group">
-                            <label for="departement">Département :</label>
-                            <input type="number" name="departement" id="departement" th:value="${habitation.departement}" placeholder="Département">
+                            <label for="departement">E-mail :</label>
+                            <input type="email" name="email" id="departement" th:value="${user.email}" placeholder="Département">
                         </div>
                         <div class="form-group">
-                            <label for="superficie">Superficie :</label>
-                            <input type="number" name="superficie" id="superficie" th:value="${habitation.superficie}" placeholder="Superficie">                            
+                            <label for="superficie">Téléphone :</label>
+                            <input type="tel" name="phone" id="superficie" th:value="${user.phone}" placeholder="Superficie">
                         </div>
                         <div class="form-group">
-                            <label for="prix">Prix :</label>
-                            <input type="number" name="prix" id="prix" th:value="${habitation.prix}" placeholder="Prix">                            
+                            <label for="prix">Role :</label>
+                            <input type="text" name="role" id="prix" th:value="${user.role}" placeholder="Prix">
                         </div>
                         <input type="submit" value="Ajouter">
                     </form>

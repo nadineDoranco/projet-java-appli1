@@ -1,4 +1,4 @@
-package com.doranco.appli1.projetjava.appli1;
+package com.doranco.appli1;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

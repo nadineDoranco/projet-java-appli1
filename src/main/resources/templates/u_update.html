@@ -16,43 +16,43 @@
         <div class="container mt-5">
             <div class="card">
                 <div class="card-header">
-                    <h3>Modifier l'habitation : </h3> 
+                    <h3>Modifier l'utilisateur : </h3>
                 </div>
                 <div class="card-body">
                     <form th:action="@{save}" method="post">
                     <table class="table">
                         <tr>
                             <th>
-                                <label for="id">Id :</label>
+                                <label for="username">Username :</label>
                             </th>
                             <th>                                
-                                <label for="nom">Nom :</label>
+                                <label for="nom">Prénom :</label>
                             </th>
                             <th> 
-                                <label for="departement">Département :</label>
+                                <label for="departement">E-mail :</label>
                             </th>
                             <th>
-                                <label for="superficie">m²</label></th>
+                                <label for="superficie">Téléphone</label></th>
                             <th>
-                                <label for="prix">Prix :</label>
+                                <label for="prix">Role :</label>
                             </th>
                             <th>Actions</th>
                         </tr>
                         <tr>
-                            <td> 
-                                <input type="text" name="id" th:value="${habitation.id}" id="id" readonly="readonly">
-                            </td>
-                            <td> 
-                                <input type="text" name="nom" id="nom" th:value="${habitation.nom}">
+                            <td>
+                                <input type="text" name="username" th:value="${user.username}" id="username" readonly="readonly">
                             </td>
                             <td>
-                                <input type="number" name="departement" id="departement" th:value="${habitation.departement}">
-                            </td>
-                            <td> 
-                                <input type="number" name="superficie" id="superficie" th:value="${habitation.superficie}">                            
+                                <input type="text" name="prenom" id="nom" th:value="${user.prenom}">
                             </td>
                             <td>
-                                <input type="number" name="prix" id="prix" th:value="${habitation.prix}">
+                                <input type="email" name="email" id="departement" th:value="${user.email}" >
+                            </td>
+                            <td>
+                                <input type="tel" name="phone" id="superficie" th:value="${user.phone}" >
+                            </td>
+                            <td>
+                                <input type="text" name="role" id="prix" th:value="${user.role}">
                             </td>
                             <td>
                                 <button type="submit">Modifier</button>              
