@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import test.entity.UserRole;
 import test.formbean.AppUserForm;
 import test.model.AppUser;
 import test.model.Gender;
@@ -13,10 +14,38 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
+
 @Repository
 public class AppUserDAO {
 
-    // Config in WebSecurityConfig
+    @Autowired
+    private EntityManager entityManager;
+
+    public AppUser findUserAccount(String userName) {
+        try {
+            String sql = "Select e from " + AppUser.class.getName() + " e " //
+                    + " Where e.userName = :userName ";
+
+            Query query = entityManager.createQuery(sql, AppUser.class);
+            query.setParameter("userName", userName);
+
+            return (AppUser) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    public List<String> getRoleNames(Long userId) {
+        String sql = "Select ur.appRole.roleName from " + UserRole.class.getName() + " ur " //
+                + " where ur.appUser.userId = :userId ";
+
+        Query query = this.entityManager.createQuery(sql, String.class);
+        query.setParameter("userId", userId);
+        return query.getResultList();
+    }
     @Autowired
     private PasswordEncoder passwordEncoder;
 

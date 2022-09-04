@@ -1,8 +1,8 @@
 package test.validator;
 
-import com.dao.AppUserDAO;
+/*import com.dao.AppUserDAO;
 import com.formbean.AppUserForm;
-import com.model.AppUser;
+import com.model.AppUser;*/
 import org.hibernate.validator.internal.constraintvalidators.bv.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,10 +17,31 @@ import test.model.AppUser;
 public class AppUserValidator implements Validator {
 
     // common-validator library.
-    //private EmailValidator emailValidator;
+    private EmailValidator emailValidator;
 
-    @Autowired
+
     private AppUserDAO appUserDAO;
+
+    public AppUserValidator(EmailValidator emailValidator, AppUserDAO appUserDAO) {
+        this.emailValidator = emailValidator;
+        this.appUserDAO = appUserDAO;
+    }
+
+    public EmailValidator getEmailValidator() {
+        return emailValidator;
+    }
+
+    public void setEmailValidator(EmailValidator emailValidator) {
+        this.emailValidator = emailValidator;
+    }
+
+    public AppUserDAO getAppUserDAO() {
+        return appUserDAO;
+    }
+
+    public void setAppUserDAO(AppUserDAO appUserDAO) {
+        this.appUserDAO = appUserDAO;
+    }
 
     // The classes are supported by this validator.
     @Override
@@ -42,7 +63,7 @@ public class AppUserValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "gender", "NotEmpty.appUserForm.gender");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "countryCode", "NotEmpty.appUserForm.countryCode");
 
-        if (!this.emailValidator.isValid(appUserForm.getEmail())) {
+        if (!this.emailValidator.isValid(AppUserForm.getEmail())) {
             // Invalid email.
             errors.rejectValue("email", "Pattern.appUserForm.email");
         } else if (appUserForm.getUserId() == null) {
